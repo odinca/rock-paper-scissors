@@ -42,11 +42,6 @@ function getHumanChoice(){
     return getChoice(humanChoice)
 }
 
-// Store player's score
-
-let humanScore = 0
-let computerScore = 0
-
 // Function to play a round, comparing players choice with the computer's
 
 function playRound(human, computer) {
@@ -63,9 +58,32 @@ function playRound(human, computer) {
     }
 }
 
-let humanSelection = getHumanChoice();
-let computerSelection = getComputerChoice();
-
-playRound(humanSelection, computerSelection);
+// Store player's score
+let humanScore = 0;
+let computerScore = 0;
 
 // Logic to play a best-of five rounds
+
+function playGame() {
+    let round = 1
+    while (round <= 5) {
+        console.log(`Round ${round}`)
+        playRound(getHumanChoice(), getComputerChoice());
+        round++;
+        console.log(`Current score:
+            Human: ${humanScore}
+            Computer: ${computerScore}`)
+        if (round == 5 && humanScore == computerScore) {
+            round--;
+        }
+    }
+    if (humanScore > computerScore) {
+        console.log("Human wins the game! Yay for humanity!")
+        }
+    else {
+        console.log("Computer wins! All hail our new overlords!")
+        }
+    
+}
+
+playGame();
