@@ -1,4 +1,5 @@
 // Function to map integers to player choices
+
 function getChoice(n) {
     let choice
     if (n === 1) {
@@ -14,6 +15,7 @@ function getChoice(n) {
 }
 
 // Function to randomly return a choice from computer
+
 function getComputerChoice(){
     const randInt = Math.floor(Math.random() * 3) + 1;
     return getChoice(randInt)
@@ -31,19 +33,36 @@ function getHumanChoice(){
             3 = Scissors`));
         if (isNaN(humanChoice) || humanChoice < 0 || humanChoice > 3) {
             n = 1;
-            console.log("Invalid choice. Please try again")
+            alert("Invalid choice. Please try again")
         }
         else {
             n = 2;
         }
     }
-    return humanChoice
+    return getChoice(humanChoice)
 }
-
-console.log(getComputerChoice())
+console.log(getHumanChoice())
 
 // Store player's score
 
+let humanScore = 0
+let computerScore = 0
+
 // Function to play a round, comparing players choice with the computer's
+
+function playRound(human, computer) {
+    if (human == computer){
+        console.log("It's a tie!")
+    }
+    else if (human == "Rock" && computer == "Scissors" || human == "Paper" && computer == "Rock" || human == "Scissors" && computer == "Paper") {
+        humanScore++;
+        console.log(`${human} beats ${computer}`. Human wins!)
+    }
+    else {
+        computer++;
+        console.log(`${human} beats ${computer}`. Computer wins!)
+    }
+}
+
 
 // Logic to play a best-of five rounds
