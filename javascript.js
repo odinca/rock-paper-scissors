@@ -41,7 +41,6 @@ function getHumanChoice(){
     }
     return getChoice(humanChoice)
 }
-console.log(getHumanChoice())
 
 // Store player's score
 
@@ -56,13 +55,17 @@ function playRound(human, computer) {
     }
     else if (human == "Rock" && computer == "Scissors" || human == "Paper" && computer == "Rock" || human == "Scissors" && computer == "Paper") {
         humanScore++;
-        console.log(`${human} beats ${computer}`. Human wins!)
+        console.log(`${human} beats ${computer}. Human wins!`)
     }
     else {
-        computer++;
-        console.log(`${human} beats ${computer}`. Computer wins!)
+        computerScore++;
+        console.log(`${computer} beats ${human}. Computer wins!`)
     }
 }
 
+let humanSelection = getHumanChoice();
+let computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
 
 // Logic to play a best-of five rounds
