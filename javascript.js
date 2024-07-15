@@ -69,19 +69,21 @@ function playGame() {
     while (round <= 5) {
         console.log(`Round ${round}`)
         playRound(getHumanChoice(), getComputerChoice());
-        round++;
         console.log(`Current score:
             Human: ${humanScore}
             Computer: ${computerScore}`)
         if (round == 5 && humanScore == computerScore) {
             round--;
         }
+        else {
+            round++;
+        }
     }
     if (humanScore > computerScore) {
-        console.log("Human wins the game! Yay for humanity!")
+        alert("Human wins the game! Yay for humanity!")
         }
     else {
-        console.log("Computer wins! All hail our new overlords!")
+        alert("Computer wins! All hail our new overlords!")
         }
     
 }
