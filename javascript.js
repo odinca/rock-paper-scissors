@@ -1,17 +1,22 @@
-// Function to randomly return a choice from computer
-function getComputerChoice(){
-    let computerChoice
-    const randInt = Math.floor(Math.random() * 3) + 1;
-    if (randInt === 1) {
-        computerChoice = "Rock";
+// Function to map integers to player choices
+function getChoice(n) {
+    let choice
+    if (n === 1) {
+        choice = "Rock";
     }
-    else if (randInt === 2) {
-        computerChoice = "Paper";
+    else if (n === 2) {
+        choice = "Paper";
     }
     else {
-        computerChoice = "Scissors";
+        choice = "Scissors";
     }
-    return computerChoice
+    return choice
+}
+
+// Function to randomly return a choice from computer
+function getComputerChoice(){
+    const randInt = Math.floor(Math.random() * 3) + 1;
+    return getChoice(randInt)
 }
 
 // Request choice from player as input
@@ -35,7 +40,7 @@ function getHumanChoice(){
     return humanChoice
 }
 
-console.log(getHumanChoice())
+console.log(getComputerChoice())
 
 // Store player's score
 
