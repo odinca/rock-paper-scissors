@@ -33,7 +33,7 @@ function getHumanChoice(){
             3 = Scissors`));
         if (isNaN(humanChoice) || humanChoice < 0 || humanChoice > 3) {
             n = 1;
-            alert("Invalid choice. Please try again")
+            console.log("Invalid choice. Please try again")
         }
         else {
             n = 2;
@@ -80,10 +80,10 @@ function playGame() {
         }
     }
     if (humanScore > computerScore) {
-        alert("Human wins the game! Yay for humanity!")
+        console.log("Human wins the game! Yay for humanity!")
         }
     else {
-        alert("Computer wins! All hail our new overlords!")
+        console.log("Computer wins! All hail our new overlords!")
         }
     
 }
