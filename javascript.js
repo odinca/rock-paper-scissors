@@ -63,7 +63,7 @@ let humanScore = 0;
 let computerScore = 0;
 
 // Logic to play a best-of five rounds
-
+/*
 function playGame() {
     let round = 1
     while (round <= 5) {
@@ -87,5 +87,25 @@ function playGame() {
         }
     
 }
+*/
+// DOM methods to capture user input
 
-playGame();
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+
+rock.addEventListener("click", () => {
+    return playRound("Rock", getComputerChoice())
+});
+
+paper.addEventListener("click", () => {
+    return playRound("Paper", getComputerChoice())
+});
+
+scissors.addEventListener("click", () => {
+    return playRound("Scissors", getComputerChoice())
+});
+
+
+
+// playGame();
