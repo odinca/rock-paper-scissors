@@ -20,48 +20,56 @@ function getComputerChoice(){
 
 function playRound(human, computer) {
     if (human == computer){
-        return "It's a tie!"
+        winner.textContent = "It's a tie!";
     }
     else if (human == "Rock" && computer == "Scissors" || human == "Paper" && computer == "Rock" || human == "Scissors" && computer == "Paper") {
         humanScore++;
-        return `${human} beats ${computer}. Human wins!`
+        winner.textContent = `${human} beats ${computer}. Human wins!`;
     }
     else {
         computerScore++;
-        return `${computer} beats ${human}. Computer wins!`
+        winner.textContent = `${computer} beats ${human}. Computer wins!`;
     }
+    updateResults();
+    if (isGameOver()) {
+        displayWinner();
+        restartButton();
+    }
+}
+
+function updateResults() {
+    results.textContent = `
+    Human: ${humanScore}
+    Computer: ${computerScore}`;
+}
+
+function isGameOver() {
+    return humanScore === 5 || computerScore === 5;
+}
+
+function displayWinner() {
+    if (humanScore === 5) {
+        winner.textContent = "Human wins the game! Yay for humanity!";
+    }
+    else if (computerScore === 5) {
+        winner.textContent = "Computer wins! All hail our new overlords!"
+    }
+}
+
+function restartButton() {
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach(button => button.remove());
+    const button = document.createElement("button");
+    button.textContent = "Restart";
+    button.setAttribute("id", "restart");
+    results.parentNode.insertBefore(button, results);
+    button.addEventListener("click", () => location.reload());
 }
 
 // Store player's score
 let humanScore = 0;
 let computerScore = 0;
 
-// Logic to play a best-of five rounds
-/*
-function playGame() {
-    let round = 1
-    while (round <= 5) {
-        console.log(`Round ${round}`)
-        playRound(getHumanChoice(), getComputerChoice());
-        console.log(`Current score:
-            Human: ${humanScore}
-            Computer: ${computerScore}`)
-        if (round == 5 && humanScore == computerScore) {
-            round--;
-        }
-        else {
-            round++;
-        }
-    }
-    if (humanScore > computerScore) {
-        console.log("Human wins the game! Yay for humanity!")
-        }
-    else {
-        console.log("Computer wins! All hail our new overlords!")
-        }
-    
-}
-*/
 // DOM methods to capture user input
 
 const rock = document.querySelector("#rock");
@@ -71,12 +79,8 @@ const scissors = document.querySelector("#scissors");
 const results = document.querySelector("#results");
 const winner = document.querySelector("#winner");
 
-const anyButton = document.querySelector("button");
-
 rock.addEventListener("click", () => playRound("Rock", getComputerChoice()));
 paper.addEventListener("click", () => playRound("Paper", getComputerChoice()));
 scissors.addEventListener("click", () => playRound("Scissors", getComputerChoice()));
 
-results.textContent = `
-Human: ${humanScore}
-Computer: ${computerScore}`;
+updateResults();
