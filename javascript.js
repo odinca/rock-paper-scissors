@@ -1,11 +1,13 @@
-// Function to map integers to player choices
 
-function getChoice(n) {
+// Function to randomly return a choice from computer
+
+function getComputerChoice(){
     let choice
-    if (n === 1) {
+    const randInt = Math.floor(Math.random() * 3) + 1;
+    if (randInt === 1) {
         choice = "Rock";
     }
-    else if (n === 2) {
+    else if (randInt === 2) {
         choice = "Paper";
     }
     else {
@@ -14,47 +16,19 @@ function getChoice(n) {
     return choice
 }
 
-// Function to randomly return a choice from computer
-
-function getComputerChoice(){
-    const randInt = Math.floor(Math.random() * 3) + 1;
-    return getChoice(randInt)
-}
-
-// Request choice from player as input
-
-function getHumanChoice(){
-    let humanChoice
-    let n = 1;
-    while (n === 1) {
-        humanChoice = Number(prompt(`Choose your option:
-            1 = Rock
-            2 = Paper
-            3 = Scissors`));
-        if (isNaN(humanChoice) || humanChoice < 0 || humanChoice > 3) {
-            n = 1;
-            console.log("Invalid choice. Please try again")
-        }
-        else {
-            n = 2;
-        }
-    }
-    return getChoice(humanChoice)
-}
-
 // Function to play a round, comparing players choice with the computer's
 
 function playRound(human, computer) {
     if (human == computer){
-        console.log("It's a tie!")
+        return "It's a tie!"
     }
     else if (human == "Rock" && computer == "Scissors" || human == "Paper" && computer == "Rock" || human == "Scissors" && computer == "Paper") {
         humanScore++;
-        console.log(`${human} beats ${computer}. Human wins!`)
+        return `${human} beats ${computer}. Human wins!`
     }
     else {
         computerScore++;
-        console.log(`${computer} beats ${human}. Computer wins!`)
+        return `${computer} beats ${human}. Computer wins!`
     }
 }
 
@@ -94,18 +68,15 @@ const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 
-rock.addEventListener("click", () => {
-    return playRound("Rock", getComputerChoice())
-});
+const results = document.querySelector("#results");
+const winner = document.querySelector("#winner");
 
-paper.addEventListener("click", () => {
-    return playRound("Paper", getComputerChoice())
-});
+const anyButton = document.querySelector("button");
 
-scissors.addEventListener("click", () => {
-    return playRound("Scissors", getComputerChoice())
-});
+rock.addEventListener("click", () => playRound("Rock", getComputerChoice()));
+paper.addEventListener("click", () => playRound("Paper", getComputerChoice()));
+scissors.addEventListener("click", () => playRound("Scissors", getComputerChoice()));
 
-
-
-// playGame();
+results.textContent = `
+Human: ${humanScore}
+Computer: ${computerScore}`;
